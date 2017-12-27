@@ -79,7 +79,7 @@ class SingleLinkedList {
 
 int main() {
   SingleLinkedList<int> l;
-  size_t n; // actually variable from the task
+  size_t n = 0; // actually variable from the task
   std::cin >> n;
   while(n--) {
     int item; // initialization consist of reading
