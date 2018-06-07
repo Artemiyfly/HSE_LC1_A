@@ -1,32 +1,36 @@
 #include <iostream>
 
 template <typename T>
-struct SingleLinkedList {
+class SingleLinkedList {
   struct Node {
     T value;
     Node *next = nullptr;
   };
+
   Node *first = nullptr, *last = nullptr;
+ public:
   void push_back(T value) {
-    if(last) {
+    if(last != nullptr) {
       last = (last->next) = new Node();
     } else {
       first = last = new Node();
     }
     last->value = value;
   }
+
   void push_back(Node *n) {
-    if(last) {
+    if(last != nullptr) {
       last->next = n;
     } else {
       first = n;
     }
     last = n;
   }
+
   void append(SingleLinkedList<T>& b) {
-    if(!b.last)
+    if(b.last == nullptr)
       return;
-    if(last) {
+    if(last != nullptr) {
       last->next = b.first;
     } else {
       first = b.first;
@@ -35,6 +39,7 @@ struct SingleLinkedList {
     b.first = nullptr;
     b.last = nullptr;
   }
+
   Node *pop_front() {
     Node *res = first;
     if(first == last)
@@ -43,6 +48,7 @@ struct SingleLinkedList {
     res->next = nullptr;
     return res;
   }
+
   void sort() {
     if(first == last)
       return;
@@ -62,6 +68,7 @@ struct SingleLinkedList {
     append(pivot);
     append(higher);
   }
+
   void print() const {
     for(auto i = first; i != nullptr; i = i->next) {
       std::cout << i->value << ' ';
@@ -72,7 +79,7 @@ struct SingleLinkedList {
 
 int main() {
   SingleLinkedList<int> l;
-  size_t n; // actually variable from the task
+  size_t n = 0; // actually variable from the task
   std::cin >> n;
   while(n--) {
     int item; // initialization consist of reading
